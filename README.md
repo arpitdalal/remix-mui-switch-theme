@@ -5,8 +5,7 @@ Using Remix to create a persistent MUI theme switcher with HTTP cookie.
 ## Preview
 
 Open this example on [CodeSandbox](https://codesandbox.com):
-
-[![Open in CodeSandbox](https://codesandbox.io/s/github/arpitdalal/remix-mui-switch-theme)
+[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/arpitdalal/remix-mui-switch-theme)
 
 ## Features
 
