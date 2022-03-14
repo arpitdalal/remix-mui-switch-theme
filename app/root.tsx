@@ -1,4 +1,12 @@
-import { useContext, useMemo } from 'react';
+import {
+  useContext,
+  useMemo,
+} from 'react';
+
+import type {
+  ActionFunction,
+  LoaderFunction,
+} from 'remix';
 import {
   Link as RmxLink,
   Links,
@@ -11,23 +19,22 @@ import {
   useCatch,
   useLoaderData,
 } from 'remix';
+import { DEFAULT_THEME } from '~/constants';
+import ClientStyleContext from '~/context/ClientStyleContext';
+import type { ThemeNames } from '~/themes';
+import { getTheme } from '~/themes';
+import {
+  getUserTheme,
+  themeCookie,
+} from '~/utils/theme.server';
 
+import { withEmotionCache } from '@emotion/react';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiLink from '@mui/material/Link';
 import { ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import { withEmotionCache } from '@emotion/react';
-
-import { getUserTheme, themeCookie } from '~/utils/theme.server';
-
-import ClientStyleContext from '~/context/ClientStyleContext';
-
-import { DEFAULT_THEME, getTheme } from '~/themes';
-
-import type { ActionFunction, LoaderFunction } from 'remix';
-import type { ThemeNames } from '~/themes';
 
 export type RootLoaderData = {
   themeName: ThemeNames;
@@ -81,7 +88,7 @@ const Document = withEmotionCache(
         clientStyleData.themeName ||
         DEFAULT_THEME
       );
-    }, [loaderData, clientStyleData]);
+    }, [loaderData, clientStyleData, propThemeName]);
 
     const theme = getTheme(themeName);
 

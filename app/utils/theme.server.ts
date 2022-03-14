@@ -1,7 +1,5 @@
 import { createCookie } from 'remix';
-
-import { DEFAULT_THEME } from '~/themes';
-
+import { DEFAULT_THEME } from '~/constants';
 import type { ThemeNames } from '~/themes';
 
 // Create theme cookie

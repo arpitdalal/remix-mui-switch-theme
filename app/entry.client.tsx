@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
 import { hydrate } from 'react-dom';
+
 import { RemixBrowser } from 'remix';
+import { DEFAULT_THEME } from '~/constants';
+import ClientStyleContext from '~/context/ClientStyleContext';
+import type { ThemeNames } from '~/themes';
+import createEmotionCache from '~/utils/createEmotionCache';
+import {
+  getCookie,
+  getParsedCookie,
+} from '~/utils/theme.client';
 
 import { CacheProvider } from '@emotion/react';
-
-import createEmotionCache from '~/utils/createEmotionCache';
-import { getCookie, getParsedCookie } from '~/utils/theme.client';
-
-import ClientStyleContext from '~/context/ClientStyleContext';
-
-import { DEFAULT_THEME } from '~/themes';
-
-import type { ThemeNames } from '~/themes';
 
 function ClientCacheProvider({ children }: React.PropsWithChildren<{}>) {
   const [cache, setCache] = useState(createEmotionCache());
 
   const themeCookie = getCookie("theme");
-  const parsedCookie = getParsedCookie(themeCookie);
+  let parsedCookie = "";
+  if (themeCookie) {
+    parsedCookie = getParsedCookie(themeCookie);
+  }
   let defaultThemeName: ThemeNames = DEFAULT_THEME;
   if (parsedCookie === "dark" || parsedCookie === "light") {
     defaultThemeName = parsedCookie;

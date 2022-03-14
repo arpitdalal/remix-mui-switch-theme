@@ -1,7 +1,6 @@
 import { createContext } from 'react';
 
-import { DEFAULT_THEME } from '~/themes';
-
+import { DEFAULT_THEME } from '~/constants';
 import type { ThemeNames } from '~/themes';
 
 export interface ClientStyleContextData {

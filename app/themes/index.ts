@@ -1,3 +1,4 @@
+import { DEFAULT_THEME } from '~/constants';
 import darkTheme from '~/themes/dark';
 import lightTheme from '~/themes/light';
 
@@ -9,8 +10,6 @@ const themes: Record<ThemeNames, Theme> = {
   dark: darkTheme,
   light: lightTheme,
 };
-
-export const DEFAULT_THEME = "dark";
 
 /**
  * Return the MUI Theme object
