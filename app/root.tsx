@@ -1,6 +1,5 @@
 import {
   useContext,
-  useLayoutEffect,
   useMemo,
 } from 'react';
 
@@ -22,6 +21,7 @@ import {
 } from 'remix';
 import { DEFAULT_THEME } from '~/constants';
 import ClientStyleContext from '~/context/ClientStyleContext';
+import useEnhancedEffect from '~/hooks/useEnhancedEffect';
 import type { ThemeNames } from '~/themes';
 import { getTheme } from '~/themes';
 import {
@@ -93,7 +93,7 @@ const Document = withEmotionCache(
     const theme = getTheme(themeName);
 
     // Only executed on client
-    useLayoutEffect(() => {
+    useEnhancedEffect(() => {
       // re-link sheet container
       emotionCache.sheet.container = document.head;
       // re-inject tags
@@ -109,7 +109,7 @@ const Document = withEmotionCache(
     }, []);
 
     // Only executed on client
-    useLayoutEffect(() => {
+    useEnhancedEffect(() => {
       // change the theme in style context
       clientStyleData.setThemeName(themeName);
     }, [themeName]);
