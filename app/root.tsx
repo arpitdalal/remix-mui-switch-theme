@@ -1,5 +1,6 @@
 import {
   useContext,
+  useLayoutEffect,
   useMemo,
 } from 'react';
 
@@ -29,7 +30,6 @@ import {
 } from '~/utils/theme.server';
 
 import { withEmotionCache } from '@emotion/react';
-import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiLink from '@mui/material/Link';
@@ -93,7 +93,7 @@ const Document = withEmotionCache(
     const theme = getTheme(themeName);
 
     // Only executed on client
-    useEnhancedEffect(() => {
+    useLayoutEffect(() => {
       // re-link sheet container
       emotionCache.sheet.container = document.head;
       // re-inject tags
@@ -109,7 +109,7 @@ const Document = withEmotionCache(
     }, []);
 
     // Only executed on client
-    useEnhancedEffect(() => {
+    useLayoutEffect(() => {
       // change the theme in style context
       clientStyleData.setThemeName(themeName);
     }, [themeName]);
